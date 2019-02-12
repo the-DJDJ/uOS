@@ -1,0 +1,8 @@
+# The gitignore file for uOS
+
+# Individual files to ignore
+bochslog.txt
+os.iso
+
+# Folders used in the OS
+build/
