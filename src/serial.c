@@ -56,3 +56,39 @@ int serial_is_transmit_fifo_empty (unsigned int com)
 	/* 0x20 = 0010 0000 */
 	return inb (SERIAL_LINE_STATUS_PORT(com)) & 0x20;
 }
+
+/**
+ * The method to initialise the serial port. This prepares it by sending all of
+ * The required values over the port, so that it can be written to.
+ *
+ * @param com The COM port
+ */
+void serial_init (unsigned short com)
+{
+	/* Configure the baud rate, etc. */
+	serial_configure_baud_rate(com, BAUD_RATE_DIVISOR);
+
+	/* Write the config */
+	outb(SERIAL_LINE_COMMAND_PORT(com), 0x03);
+	outb(SERIAL_LINE_COMMAND_PORT(com), 0xC7);
+	outb(SERIAL_LINE_COMMAND_PORT(com), 0x0B);
+
+}
+
+/**
+ * The write method. This writes a specific character data to the specified
+ * serial port.
+ * 
+ * @param com  The COM port
+ * @param data The data to write
+ */
+void serial_write (unsigned short com, char data)
+{
+	/* Check if we're ready to write. */
+	while (!serial_is_transmit_fifo_empty(com)) {
+		/* Things are obviously not ready, so we'll wait a little. */
+	}
+
+	/* And do the writing. */
+	outb(SERIAL_DATA_PORT(com), data);
+}

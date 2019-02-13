@@ -33,6 +33,15 @@
 #define SERIAL_LINE_ENABLE_DLAB         0x80
 
 /**
+ * BAUD_RATE_DIVISOR:
+ *
+ * The divisor used in setting a baud rate. This will give a baud rate of
+ * 115 200 / 3 = 38400
+ *
+ */
+#define BAUD_RATE_DIVISOR               0x03
+
+/**
  * The serial configure baud rate method. This sets the speed of the data being
  * sent. The default speed of a serial port port is 115200 bits/s. The argument
  * is a divisor of that number, hence the resulting speed becomes
@@ -61,5 +70,22 @@ void serial_configure_line (unsigned short com);
  *         1       if the transmit FIFO queue is empty
  */
 int serial_is_transmit_fifo_empty (unsigned int com);
+
+/**
+ * The method to initialise the serial port. This prepares it by sending all of
+ * The required values over the port, so that it can be written to.
+ *
+ * @param com The COM port
+ */
+void serial_init (unsigned short com);
+
+/**
+ * The write method. This writes a specific character data to the specified
+ * serial port.
+ * 
+ * @param com  The COM port
+ * @param data The data to write
+ */
+void serial_write (unsigned short com, char data);
 
 #endif /* INCLUDE_SERIAL_H */
