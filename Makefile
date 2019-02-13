@@ -1,11 +1,19 @@
+# The objects to build
 OBJECTS = loader.o kmain.o fb.o io.o serial.o
+
+# The C compiler
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
          -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
+
+# The linker
 LDFLAGS = -T ../src/link.ld -melf_i386
+
+# The assembler
 AS = nasm
 ASFLAGS = -f elf
 
+# Find some prequisites
 VPATH = src/
 
 all: kernel.elf
