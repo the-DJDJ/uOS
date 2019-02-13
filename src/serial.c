@@ -80,16 +80,27 @@ void serial_init (unsigned short com)
  * The write method. This writes a specific character data to the specified
  * serial port.
  * 
- * @param com  The COM port
- * @param data The data to write
+ * @param com The COM port
+ * @param buf The buffer to write
+ * @param len The number of characters to write
  */
-void serial_write (unsigned short com, char data)
+void serial_write (unsigned short com, char* buf, unsigned int len)
 {
 	/* Check if we're ready to write. */
 	while (!serial_is_transmit_fifo_empty(com)) {
 		/* Things are obviously not ready, so we'll wait a little. */
 	}
 
+	/* Prepare the write. */
+	serial_init(com);
+
+	/* Create some variables. */
+	unsigned int count;
+
 	/* And do the writing. */
-	outb(SERIAL_DATA_PORT(com), data);
+	count = 0;
+	for (count = 0; count < len; count++) {
+		outb(SERIAL_DATA_PORT(com), *buf);
+		buf++;
+	}
 }

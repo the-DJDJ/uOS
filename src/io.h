@@ -1,6 +1,10 @@
 #ifndef INCLUDE_IO_H
 #define INCLUDE_IO_H
 
+#define FB   0
+#define COM1 1
+#define COM2 2
+
 /**
  * The outb method. This sends the given data to the given I/O port. Defined in
  * io.s

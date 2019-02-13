@@ -1,5 +1,5 @@
 # The objects to build
-OBJECTS = loader.o kmain.o fb.o io.o serial.o
+OBJECTS = loader.o kmain.o fb.o io.o serial.o util.o
 
 # The C compiler
 CC = gcc

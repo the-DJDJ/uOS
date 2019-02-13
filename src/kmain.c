@@ -3,7 +3,9 @@
  * actions.
  */
 
+#include "util.h"
 #include "fb.h"
+#include "serial.h"
 
 
 /**
@@ -16,5 +18,6 @@ void kmain ()
 	fb_clear();
 
 	/* Write something. */
-	fb_write("Hello.\n\nWelcome to uOS.", 23);
+	print(SERIAL_COM1_BASE, "Hello.\n\nWelcome to uOS.", 23);
+
 }

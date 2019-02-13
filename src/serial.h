@@ -11,6 +11,7 @@
  * order, but they start at different values.
  */
 
+#define FB                              0          /* For printing to FB */
 #define SERIAL_COM1_BASE                0x3F8      /* COM1 base port */
 #define SERIAL_COM2_BASE                0x2F8      /* COM2 base port */
 
@@ -83,9 +84,10 @@ void serial_init (unsigned short com);
  * The write method. This writes a specific character data to the specified
  * serial port.
  * 
- * @param com  The COM port
- * @param data The data to write
+ * @param com The COM port
+ * @param buf The buffer to write
+ * @param len The number of characters to write
  */
-void serial_write (unsigned short com, char data);
+void serial_write (unsigned short com, char* buf, unsigned int len);
 
 #endif /* INCLUDE_SERIAL_H */
