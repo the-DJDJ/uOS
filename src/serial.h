@@ -12,6 +12,7 @@
  */
 
 #define SERIAL_COM1_BASE                0x3F8      /* COM1 base port */
+#define SERIAL_COM2_BASE                0x2F8      /* COM2 base port */
 
 #define SERIAL_DATA_PORT(base)          (base)
 #define SERIAL_FIFO_COMMAND_PORT(base)  (base + 2)
