@@ -11,7 +11,7 @@
 void outb (unsigned short port, unsigned char data);
 
 /**
- * The inb method. This reads a byte from the I/O port.
+ * The inb method. This reads a byte from the I/O port. Defined in io.s
  *
  * @param  port The address of the I/O port
  * @return      The read byte

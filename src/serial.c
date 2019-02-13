@@ -36,7 +36,8 @@ void serial_configure_baud_rate (unsigned short com, unsigned short divisor)
  */
 void serial_configure_line (unsigned short com)
 {
-	/* Bit:     | 7 | 6 | 5 4 3 | 2 | 1 0 |
+	/* 
+         * Bit:     | 7 | 6 | 5 4 3 | 2 | 1 0 |
 	 * Content: | d | b | prty  | s | dl  |
 	 * Value:   | 0 | 0 | 0 0 0 | 0 | 1 1 | = 0x03
 	 */
