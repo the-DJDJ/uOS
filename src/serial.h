@@ -40,7 +40,7 @@
  * 115 200 / 3 = 38400
  *
  */
-#define BAUD_RATE_DIVISOR               0x03
+#define BAUD_RATE_DIVISOR               0x02
 
 /**
  * The serial configure baud rate method. This sets the speed of the data being

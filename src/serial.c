@@ -146,15 +146,16 @@ void serial_write (unsigned short com, char* buf, unsigned int len)
 		/* Things are obviously not ready, so we'll wait a little. */
 	}
 
-	/* Prepare the write. */
-	serial_init(com);
-
 	/* Create some variables. */
 	unsigned int count;
 
 	/* And do the writing. */
 	count = 0;
 	for (count = 0; count < len; count++) {
+		/* Prepare to write the next character. */
+		serial_init(com);
+
+		/* Write the data. */
 		outb(SERIAL_DATA_PORT(com), *buf);
 		buf++;
 	}
