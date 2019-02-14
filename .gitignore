@@ -4,5 +4,10 @@
 bochslog.txt
 os.iso
 
+# Slightly more general files
+*.elf
+*.out
+*.swp
+
 # Folders used in the OS
 build/

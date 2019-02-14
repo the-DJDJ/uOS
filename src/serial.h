@@ -11,7 +11,9 @@
  * order, but they start at different values.
  */
 
+#define FB                              0          /* For printing to FB */
 #define SERIAL_COM1_BASE                0x3F8      /* COM1 base port */
+#define SERIAL_COM2_BASE                0x2F8      /* COM2 base port */
 
 #define SERIAL_DATA_PORT(base)          (base)
 #define SERIAL_FIFO_COMMAND_PORT(base)  (base + 2)
@@ -30,6 +32,15 @@
  * then the lowest 8 bits will follow
  */
 #define SERIAL_LINE_ENABLE_DLAB         0x80
+
+/**
+ * BAUD_RATE_DIVISOR:
+ *
+ * The divisor used in setting a baud rate. This will give a baud rate of
+ * 115 200 / 3 = 38400
+ *
+ */
+#define BAUD_RATE_DIVISOR               0x03
 
 /**
  * The serial configure baud rate method. This sets the speed of the data being
@@ -60,5 +71,23 @@ void serial_configure_line (unsigned short com);
  *         1       if the transmit FIFO queue is empty
  */
 int serial_is_transmit_fifo_empty (unsigned int com);
+
+/**
+ * The method to initialise the serial port. This prepares it by sending all of
+ * The required values over the port, so that it can be written to.
+ *
+ * @param com The COM port
+ */
+void serial_init (unsigned short com);
+
+/**
+ * The write method. This writes a specific character data to the specified
+ * serial port.
+ * 
+ * @param com The COM port
+ * @param buf The buffer to write
+ * @param len The number of characters to write
+ */
+void serial_write (unsigned short com, char* buf, unsigned int len);
 
 #endif /* INCLUDE_SERIAL_H */
