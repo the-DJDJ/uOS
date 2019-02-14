@@ -18,6 +18,7 @@ void kmain ()
 	fb_clear();
 
 	/* Write something. */
-	print(SERIAL_COM1_BASE, "Hello.\n\nWelcome to uOS.", 23);
+	print(FB, "Hello.\n\nWelcome to uOS.", 23);
+	print(SERIAL_COM1_BASE, "test", 4);
 
 }

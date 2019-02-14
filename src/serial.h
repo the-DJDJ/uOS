@@ -63,6 +63,15 @@ void serial_configure_baud_rate (unsigned short com, unsigned short divisor);
 void serial_configure_line (unsigned short com);
 
 /**
+ * The serial configure buffer method. This makes sure enables FIFO, clears
+ * both receiver and transmission FIFO queues, and uses 14 bytes as the size of
+ * the queue.
+ *
+ * @param com The COM port
+ */
+void serial_configure_buffer (unsigned short com);
+
+/**
  * The serial is transmit fifo empty method. This checks whether the transmit
  * FIFO queue is empty or not for the given COM port.
  *
