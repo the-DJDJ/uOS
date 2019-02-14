@@ -57,6 +57,17 @@ void serial_configure_buffer (unsigned short com)
 }
 
 /**
+ * The serial configure modem method. This is used for very simple hardware
+ * flow and indicate that we are ready to send data.
+ *
+ * @param com The COM port
+ */
+void serial_configure_modem (unsigned short com)
+{
+	outb(SERIAL_LINE_COMMAND_PORT(com), 0x03);
+}
+
+/**
  * The serial is transmit fifo empty method. This checks whether the transmit
  * FIFO queue is empty or not for the given COM port.
  *
@@ -82,10 +93,7 @@ void serial_init (unsigned short com)
 	serial_configure_baud_rate(com, BAUD_RATE_DIVISOR);
 	serial_configure_line(com);
 	serial_configure_buffer(com);
-
-	/* Write the config */
-	outb(SERIAL_LINE_COMMAND_PORT(com), 0x0B);
-
+	serial_configure_modem(com);
 }
 
 /**
