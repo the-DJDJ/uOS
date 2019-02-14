@@ -32,15 +32,22 @@ void serial_configure_baud_rate (unsigned short com, unsigned short divisor)
  * serial port. The port is set to have a data length of 8 bits, no parity bits,
  * one stop bit and break control disabled.
  *
+ * Name     | Description
+ * ---------+------------
+ * d        | Enables (d = 1) or disables (d = 0) DLAB
+ * b        | If break control is enabled (b = 1) or disabled (b = 0)
+ * prty     | The number of parity bits to use
+ * s        | The number of stop bits to use (s = 0 equals 1, s = 1 equals 1.5 or 2)
+ * dl       | Describes the length of the data
+ *
+ * Bit:     | 7 | 6 | 5 4 3 | 2 | 1 0 |
+ * Content: | d | b | prty  | s | dl  |
+ * Value:   | 0 | 0 | 0 0 0 | 0 | 1 1 | = 0x03
+ *
  * @param com      The serial port to configure
  */
 void serial_configure_line (unsigned short com)
 {
-	/* 
-         * Bit:     | 7 | 6 | 5 4 3 | 2 | 1 0 |
-	 * Content: | d | b | prty  | s | dl  |
-	 * Value:   | 0 | 0 | 0 0 0 | 0 | 1 1 | = 0x03
-	 */
 	outb(SERIAL_LINE_COMMAND_PORT(com), 0x03);
 }
 
@@ -48,6 +55,20 @@ void serial_configure_line (unsigned short com)
  * The serial configure buffer method. This makes sure enables FIFO, clears
  * both receiver and transmission FIFO queues, and uses 14 bytes as the size of
  * the queue.
+ *
+ * Name     | Description
+ * ---------+------------
+ * lvl      | How many bytes should be stored in the FIFO buffers
+ * bs       | If the buffers should be 16 or 64 bytes large
+ * r        | Reserved for future use
+ * dma      | How the serial port data should be accessed
+ * clt      | Clear the transmission FIFO buffer
+ * clr      | Clear the receiver FIFO buffer
+ * e        | If the FIFO buffer should be enabled or not
+ *
+ * Bit:     | 7 6 | 5  | 4 | 3   | 2   | 1   | 0 |
+ * Content: | lvl | bs | r | dma | clt | clr | e |
+ * Value:   | 1 1 | 0  | 0 | 0   | 1   | 1   | 1 | = 0xC7
  *
  * @param com The COM port
  */
@@ -59,6 +80,20 @@ void serial_configure_buffer (unsigned short com)
 /**
  * The serial configure modem method. This is used for very simple hardware
  * flow and indicate that we are ready to send data.
+ *
+ * Name     | Description
+ * ---------+--------------------------------------------------
+ * r        | Reserved
+ * af       | Autoflow control enabled
+ * lb       | Loopback mode (used for debugging serial ports)
+ * ao2      | Auxiliary output 2, used for receiving interrupts
+ * ao1      | Auxiliary output 1
+ * rts      | Ready To Transmit
+ * dtr      | Data Terminal Ready
+ *
+ * Bit:     | 7 | 6 | 5  | 4  | 3   | 2   | 1   | 0   |
+ * Content: | r | r | af | lb | ao2 | ao1 | rts | dtr |
+ * Value:   | 0 | 0 | 0  | 0  | 0   | 0   | 1   | 1   | = 0x03
  *
  * @param com The COM port
  */
