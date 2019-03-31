@@ -36,7 +36,12 @@
  * The framebuffer variable. This sits at address 0x000B8000, and is treated as
  * a char pointer such that we can write to it.
  */
-char *fb;
+char *framebuffer;
+
+/**
+ * The position variable tracking where we are on the screen.
+ */
+unsigned int position;
 
 
 /**
@@ -62,11 +67,11 @@ void fb_move_cursor (unsigned short pos);
  * The write method. This writes the contents of the buffer buf of length len
  * to the screen, and automatically advances the cursor after a character has
  * been written. The screen is also scrolled if necessary.
- * 
+ *
  * @param buf The buffer to write
  * @param len The number of characters to write
  */
-void fb_write (char *buf, unsigned int len);
+void fb_write (char *buffer, unsigned int length);
 
 /**
  * The clear method. This clears the entire screen by emptying out the
