@@ -25,5 +25,10 @@ struct gdt {
 	unsigned short size;
 } __attribute__((packed));
 
+/**
+ * The method used to create the global descriptor table. This calls an assembly
+ * method to load the kernel code segment as a descriptor table.
+ */
+void createGDT(void);
 
 #endif /* INCLUDE_GDT_H */

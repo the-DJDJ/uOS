@@ -5,6 +5,7 @@
 
 #include "util.h"
 #include "fb.h"
+#include "gdt.h"
 #include "serial.h"
 
 
@@ -16,6 +17,8 @@ void kmain ()
 {
 	/* Clear debug info from the output. */
 	fb_clear();
+
+    createGDT();
 
 	/* Write something. */
 	print(FB, "Hello.\n\nWelcome to uOS.", 23);
