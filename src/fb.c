@@ -60,14 +60,10 @@ void fb_move_cursor (unsigned short pos)
  * @param buffer The buffer to write
  * @param length The number of characters to write
  */
-void fb_write (char *buffer, unsigned int length)
+void fb_write (char *buffer)
 {
-	/* The variable for seeing how far into the write we are. */
-	unsigned int count;
-
 	/* Write every character to the framebuffer. */
-	count = 0;
-	for (count = 0; count < length; count++) {
+	while (*buffer != '\0') {
 		if (*buffer == '\n') {
 			position += FB_WIDTH - (position % FB_WIDTH) - 1;
 		} else {

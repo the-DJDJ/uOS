@@ -1,7 +1,7 @@
 #ifndef INCLUDE_SERIAL_H
 #define INCLUDE_SERIAL_H
 
-/** 
+/**
  * The I/O ports
  */
 
@@ -140,11 +140,10 @@ void serial_init (unsigned short com);
 /**
  * The write method. This writes a specific character data to the specified
  * serial port.
- * 
- * @param com The COM port
- * @param buf The buffer to write
- * @param len The number of characters to write
+ *
+ * @param com    The COM port
+ * @param buffer The buffer to write
  */
-void serial_write (unsigned short com, char* buf, unsigned int len);
+void serial_write (unsigned short com, char* buffer);
 
 #endif /* INCLUDE_SERIAL_H */

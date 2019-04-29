@@ -64,14 +64,13 @@ void fb_write_cell (unsigned int i, char c, unsigned char fg, unsigned char bg);
 void fb_move_cursor (unsigned short pos);
 
 /**
- * The write method. This writes the contents of the buffer buf of length len
- * to the screen, and automatically advances the cursor after a character has
- * been written. The screen is also scrolled if necessary.
+ * The write method. This writes the contents of the buffer to the screen, and
+ * automatically advances the cursor after a character has been written. The
+ * screen is also scrolled if necessary.
  *
  * @param buf The buffer to write
- * @param len The number of characters to write
  */
-void fb_write (char *buffer, unsigned int length);
+void fb_write (char *buffer);
 
 /**
  * The clear method. This clears the entire screen by emptying out the

@@ -21,6 +21,6 @@ void kmain ()
     createGDT();
 
 	/* Write something. */
-	print(FB, "Hello.\n\nWelcome to uOS.", 23);
-	print(SERIAL_COM1_BASE, "uOS serial output okay.\n", 24);
+	print(FB, "Hello.\n\nWelcome to uOS.\0");
+	print(SERIAL_COM1_BASE, "uOS serial output okay.\n\0");
 }
