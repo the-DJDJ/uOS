@@ -20,7 +20,7 @@ make os.iso
 ```
 
 ## Dependencies
-All of the dependencies for uOS can be installed using `apt-get`, or whichever package manager you prefer
+All of the dependencies for uOS can be installed using `apt`, or whichever package manager you prefer
 ```shell
 sudo apt install build-essential nasm genisoimage bochs bochs-sdl
 ```
